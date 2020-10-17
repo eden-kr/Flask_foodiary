@@ -94,7 +94,7 @@ def getImageToFoodData():
             sql = "select * from data where foodName like(%s)"
             cursor = db.cursor()
             cursor.execute(sql,string)
-            res = dataToJson(cursor.description,cursor.fetchone())
+            res = dataToJson(cursor.description,cursor.fetchall())
             return res
         except Exception as e:
             print(e)
