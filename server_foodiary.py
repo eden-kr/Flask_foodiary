@@ -29,7 +29,7 @@ def ImageToName(file):
 
     #모델 불러오기
     from keras.models import load_model
-    model = load_model("home/ubuntu/data")
+    model = load_model("/home/ubuntu/data")
     model.summary()
     prediction = model.predict(X)
     np.set_printoptions(formatter={'float': lambda x: "{0:0.3f}".format(x)})
