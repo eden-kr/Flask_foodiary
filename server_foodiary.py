@@ -96,8 +96,8 @@ def getImageToFoodData():
             cursor.execute(sql,string)
             res = dataToJson(cursor.description,cursor.fetchall())
             return res
-        except Exception as e:
-            print(e)
+    except Exception as e:
+        print(e)
     cursor.close()
     return jsonify(res)
         
