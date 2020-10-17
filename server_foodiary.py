@@ -98,8 +98,8 @@ def getImageToFoodData():
             return res
         except Exception as e:
             print(e)
-        cursor.close()
-        return jsonify(res)
+    cursor.close()
+    return jsonify(res)
         
 
 #영양정보 가져오기
