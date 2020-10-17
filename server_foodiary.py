@@ -90,7 +90,7 @@ def getImageToFoodData():
         try:
             f = request.files['file']   #파일객체 불러오기
             img = Image.open(f)
-            string = sc.ImageToName(f)+'%'      #이미지 불러오는 cnn apply model
+            string = ImageToName(f)+'%'      #이미지 불러오는 cnn apply model
             sql = "select * from data where foodName like(%s) LIMIT 1"
             cursor = db.cursor
             cursor.execute(sql,string)
