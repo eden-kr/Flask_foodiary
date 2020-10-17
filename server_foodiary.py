@@ -83,24 +83,22 @@ db = pymysql.connect(host="foodiary.ctfobxkhliur.ap-northeast-2.rds.amazonaws.co
 @app.route('/')
 def main():
     return 'flask server is Ready'
+
 @app.route('/image',methods = ['POST'])
 def getImageToFoodData():
     res = ''
-    global db
-    if request.method == 'POST':
-        try:
-            f = request.files['file']   #파일객체 불러오기
-            img = Image.open(f)
-            string = ImageToName(f)+'%'      #이미지 불러오는 cnn apply model
-            sql = "select * from data where foodName like(%s) LIMIT 1"
-            cursor = db.cursor()
-            cursor.execute(sql,string)
-            res = dataToJson(cursor.description,cursor.fetchall())
-            return res
-        except Exception as e:
-            print(e)
-        cursor.close()
-        return jsonify(res)
+    f = request.files['file']   #파일객체 불러오기
+    try:   
+        string = ImageToName(f)+'%'      #이미지 불러오는 cnn apply model
+        sql = "select * from data where foodName like(%s) LIMIT 1"
+        cursor = db.cursor()
+        cursor.execute(sql,string)
+        res = dataToJson(cursor.description,cursor.fetchall())
+        return res
+    except Exception as e:
+        print(e)
+    cursor.close()
+    return jsonify(res)
         
 
 #영양정보 가져오기
