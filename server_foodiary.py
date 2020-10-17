@@ -86,6 +86,7 @@ def main():
 @app.route('/image',methods = ['POST'])
 def getImageToFoodData():
     res = ''
+    global db
     if request.method == 'POST':
         try:
             f = request.files['file']   #파일객체 불러오기
@@ -105,6 +106,7 @@ def getImageToFoodData():
 #영양정보 가져오기
 @app.route('/get_food_data',methods = ["POST"])
 def getNutrient(): 
+    global db
     topic = request.form['foodName']
     print('받아온 단어',topic)
     word = topic+'%'
