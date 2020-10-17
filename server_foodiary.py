@@ -97,10 +97,10 @@ def getImageToFoodData():
             cursor.execute(sql,string)
             res = dataToJson(cursor.description,cursor.fetchall())
             return res
-    except Exception as e:
-        print(e)
-    cursor.close()
-    return jsonify(res)
+        except Exception as e:
+            print(e)
+        cursor.close()
+        return jsonify(res)
         
 
 #영양정보 가져오기
