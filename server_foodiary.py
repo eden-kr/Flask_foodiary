@@ -86,7 +86,6 @@ def main():
 
 @app.route('/image',methods = ['POST'])
 def getImageToFoodData():
-    res = ''
     f = request.files['file']   #파일객체 불러오기
     try:   
         string = ImageToName(f)+'%'      #이미지 불러오는 cnn apply model
@@ -98,17 +97,14 @@ def getImageToFoodData():
     except Exception as e:
         print(e)
     cursor.close()
-    return jsonify(res)
+    return jsonify('foodName','null')
         
 
 #영양정보 가져오기
 @app.route('/get_food_data',methods = ["POST"])
 def getNutrient(): 
-    global db
     topic = request.form['foodName']
-    print('받아온 단어',topic)
     word = topic+'%'
-    res = ''
     try:
         sql = "select * from data where foodName Like(%s) LIMIT 20"
         cursor = db.cursor()
@@ -118,7 +114,7 @@ def getNutrient():
     except Exception as e:
         print(e)
     cursor.close()
-    return jsonify(res)
+    return jsonify('foodName','null')
 
 
     
